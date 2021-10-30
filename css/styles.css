@@ -1,5 +1,5 @@
 body{
-    background-color: pink;
+    background-color: #000;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
@@ -426,7 +426,7 @@ main{
         padding: 20px;
     }
     .timeline .fas,.controls .fas,.liking .fas,.time{
-        font-size: 1.8vw;
+        font-size: 2vw;
     }
     h1{
         font-size: 4vw;
@@ -442,7 +442,7 @@ main{
     }
     .liking{
         position: absolute;
-        left: 200px;
+        left: 250px;
         top: 35px;
     }
     .song_card >img{
@@ -456,16 +456,37 @@ main{
     .controls{
         position: absolute;
         top: 15px;
-        left: 180px;
+        left: 220px;
     }
     .song{
         position: relative;
         right: 80px;
     }
 }
+
+@media screen and (max-width: 700px){
+    .timeline .fas,.controls .fas,.liking .fas,.time{
+        font-size: 2.6vw;
+    }
+    .liking{
+        position: absolute;
+        left: 175px;
+        top: 35px;
+    }
+    .controls{
+        position: absolute;
+        top: 15px;
+        left: 160px;
+    }
+    .song{
+        position: relative;
+        right: 80px;
+    }
+}
+
 @media screen and (max-width: 400px) {
     .timeline .fas,.controls .fas,.liking .fas,.time{
-        font-size: 4vw;
+        font-size: 3vw;
     }
     .playerhead{
         width: 98vw;
