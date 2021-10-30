@@ -393,6 +393,9 @@ main{
     line-height: 5px;
     font-size: 12px;
 }
+.timeline>.playbtn, .timeline>.pausebtn{
+    font-size: 1.8vw;
+}
 /* PlayerHead Section CSS starts */
 
 /* Media Query */
@@ -428,6 +431,9 @@ main{
     .timeline .fas,.controls .fas,.liking .fas,.time{
         font-size: 2vw;
     }
+    .timeline>.playbtn, .timeline>.pausebtn{
+        font-size: 2.8vw;
+    }
     h1{
         font-size: 4vw;
     }
@@ -446,11 +452,11 @@ main{
         top: 35px;
     }
     .song_card >img{
-        width: 18vw;
-        height: 19vw;
+        width: 19vw;
+        height: 20vw;
     }
     .song_card_info{
-        font-size: 1.5vw;
+        font-size: 1.6vw;
         line-height: 5px;
     }
     .controls{
@@ -468,6 +474,9 @@ main{
     .timeline .fas,.controls .fas,.liking .fas,.time{
         font-size: 2.6vw;
     }
+    .timeline>.playbtn, .timeline>.pausebtn{
+        font-size: 3.6vw;
+    }
     .liking{
         position: absolute;
         left: 175px;
@@ -482,11 +491,22 @@ main{
         position: relative;
         right: 80px;
     }
+    .song_card >img{
+        width: 22vw;
+        height: 23vw;
+    }
+    .song_card_info{
+        font-size: 1.75vw;
+        line-height: 5px;
+    }
 }
 
 @media screen and (max-width: 400px) {
     .timeline .fas,.controls .fas,.liking .fas,.time{
         font-size: 3vw;
+    }
+    .timeline>.playbtn, .timeline>.pausebtn{
+        font-size: 3.8vw;
     }
     .playerhead{
         width: 98vw;
