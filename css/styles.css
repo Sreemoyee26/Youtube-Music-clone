@@ -489,7 +489,7 @@ main{
     }
     .song{
         position: relative;
-        right: 80px;
+        right: 110px;
     }
     .song_card >img{
         width: 22vw;
@@ -523,16 +523,16 @@ main{
     }
     .liking{
         position: absolute;
-        left: 140px;
+        left: 130px;
         top: 35px;
     }
     .controls{
         position: absolute;
         top: 15px;
-        left: 130px;
+        left: 120px;
     }
     .song{
         position: relative;
-        right: 90px;
+        right: 110px;
     }
 }
