@@ -178,10 +178,10 @@ a:hover{
 /* Main Section CSS starts */
 main{
     padding-left: 7vw;
-    margin-bottom: 10vw;
+    margin-top: 100px;
+    margin-bottom: 80px;
 }
 .liked{
-    margin-top: 120px;
     color:white;
 }
 .card_container{
@@ -198,12 +198,33 @@ main{
     margin-top: 25px;
 }
 
+/* Cards Section */
+.card_collection_main{
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    margin: 20px;
+}
+.card_collection_main::-webkit-scrollbar{
+    display: none;
+}
+.song_card >img{
+    width: 14vw;
+    height: 15vw;
+}
+.song_card_artist{
+    color:rgb(156, 155, 155)
+}
+.song_card_info{
+    font-size: 1.1vw;
+    line-height: 5px;
+}
 
 
 
 
 
-
+/* Artists Section */
 .artists{
     display: flex;
     justify-content: center;
@@ -218,7 +239,8 @@ main{
     color: white;
 }
 .artist-info>p{
-    color: rgb(200, 201, 201)
+    color: rgb(200, 201, 201);
+    font-size: 15px;
 }
 .btn{
     padding: 5px 10px;
@@ -228,11 +250,7 @@ main{
     cursor: pointer;
 }
 
-
-
-
-
-
+/* Collections Section */
 .card_collection{
     display: grid;
     grid-template-columns: 30vw 30vw 30vw;
@@ -307,8 +325,9 @@ main{
 .playerhead{
     position: fixed;
     bottom: 0;
-    width: 99vw;
+    width: 98vw;
     padding: 10px;
+    padding-right: 15px;
     display: flex;
     justify-content: space-between;
     background-color: #212121;
@@ -357,6 +376,7 @@ main{
     display: flex;
     justify-content: center;
     width: 20vw;
+    gap: 30px;
 }
 .song_image{
     width: 40px;
@@ -371,7 +391,7 @@ main{
 .song_details{
     color: white;
     line-height: 5px;
-    font-size: 10px;
+    font-size: 12px;
 }
 /* PlayerHead Section CSS starts */
 
@@ -392,6 +412,9 @@ main{
     .navbar{
         width:99vw;
     }
+    .btn{
+        transform: scale(0.8);
+    }
     .playerhead{
         width: 101vw;
     }
@@ -403,17 +426,41 @@ main{
         padding: 20px;
     }
     .timeline .fas,.controls .fas,.liking .fas,.time{
-        font-size: 2vw;
+        font-size: 1.8vw;
     }
-    h1,h2{
+    h1{
         font-size: 4vw;
+    }
+    h2{
+        font-size: 3vw;
+    }
+    .artist-info>p{
+        font-size: 2vw;
     }
     .song-info{
         flex-direction: column;
-        margin-left: -5vw;
     }
     .liking{
-        margin-left: 12vw;
+        position: absolute;
+        left: 200px;
+        top: 35px;
+    }
+    .song_card >img{
+        width: 16vw;
+        height: 17vw;
+    }
+    .song_card_info{
+        font-size: 1.3vw;
+        line-height: 5px;
+    }
+    .controls{
+        position: absolute;
+        top: 15px;
+        left: 180px;
+    }
+    .song{
+        position: relative;
+        right: 80px;
     }
 }
 @media screen and (max-width: 400px) {
@@ -422,5 +469,29 @@ main{
     }
     .playerhead{
         width: 98vw;
+    }
+    .btn{
+        transform: scale(0.6);
+    }
+    .song_card >img{
+        width: 22vw;
+        height: 23vw;
+    }
+    .song_card_info{
+        font-size: 1.86vw;
+    }
+    .liking{
+        position: absolute;
+        left: 140px;
+        top: 35px;
+    }
+    .controls{
+        position: absolute;
+        top: 15px;
+        left: 130px;
+    }
+    .song{
+        position: relative;
+        right: 90px;
     }
 }

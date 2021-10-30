@@ -4,7 +4,7 @@ const {songs} = {
             "name": "Eternal Youth",
             "artist": "Rude",
             "location": "./assets/songs/Eternal.mp3",
-            "image": "./assets/images/artist_image.jpeg",
+            "image": "./assets/images/content/artist_image.jpeg",
             "liked": true,
             "id": 0
         },
@@ -88,3 +88,143 @@ Search.onclick = () =>{
     }
 }
 
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const playerHead = document.querySelector(".playerhead");
+    let playBtn = document.querySelector("playbtn");
+    let pauseBtn = document.querySelector("pausebtn");
+    let cardCollections = document.querySelectorAll(".card_collection_main");
+    let currentSong = new Audio();
+    
+    playerHead.style.display = "none";
+
+    const createCard = (song) => {
+        const card = document.createElement("div");
+        const img = document.createElement("img");
+        const cardInfo = document.createElement("div");
+        const cardName = document.createElement("p");
+        const cardArtist = document.createElement("p");
+
+        card.className = "song_card";
+        cardInfo.className = "song_card_info";
+        cardName.className = "song_card_name";
+        cardArtist.className = "song_card_artist";
+
+        cardName.innerHTML = song.name;
+        cardArtist.innerHTML = song.artist;
+        img.src = song.image;
+        img.alt = song.name;
+
+        cardInfo.append(cardName, cardArtist);
+        card.append(img, cardInfo);
+
+        card.onclick = function(){
+            playerHead.style.display = "flex";
+            currentSong = updatePlayer(song)
+            playPauseFunc(currentSong)
+            //returns the song, updates the player head, adds play pause functionality
+        }
+
+        return card;
+    }
+
+    const updatePlayer = ({name, artist, location, image, liked, id}) => {
+        currentSong.setAttribute("src", location);
+
+        const songContainer = document.querySelector(".song_name");
+        const artistContainer = document.querySelector(".artist");
+        const likeBtn = document.querySelector(".likebtn");
+        const artistImage = document.querySelector(".song_image");
+        const endTime = document.querySelector(".end-time");
+
+        playBtn = document.querySelector(".playbtn");
+        pauseBtn = document.querySelector(".pausebtn");
+
+        playBtn.style.display = "inline";
+        pauseBtn.style.display = "none";
+
+        songContainer.innerHTML = name;
+        artistContainer.innerHTML = artist;
+        artistImage.src = image;
+
+        likeBtn.id = id;
+        likeBtn.style.color = "grey";
+        if(liked){
+            likeBtn.style.color = "green"
+        }
+
+        likeBtn.onclick = function(){
+            likeSong(id, likeBtn, name)
+        }
+
+        currentSong.onloadedmetadata = () => {
+            let duration = currentSong.duration;
+            duration = (duration/60).toPrecision(3) + "";
+            endTime.innerHTML = duration;
+        }
+        return currentSong;
+    }
+
+    const playPauseFunc = (song) => {
+        playBtn = document.querySelector(".playbtn");
+        pauseBtn = document.querySelector(".pausebtn");
+
+        playBtn.addEventListener("click", () => {
+            song.play();
+            playBtn.style.display = "none";
+            pauseBtn.style.display = "inline";
+        });
+
+        pauseBtn.addEventListener("click", () => {
+            song.pause();
+            playBtn.style.display = "inline";
+            pauseBtn.style.display = "none";
+        })
+    }
+
+    const likeSong = (id, likeBtn, songName) => {
+        cardCollections = document.querySelectorAll(".card_collection_main");
+        let likedSongs = cardCollections[1].children;
+        likedSongs = Array.from(likedSongs);
+
+        if(songs[id].liked){
+            likeBtn.style.color = "grey";
+            songs[id].liked = false;
+            likedSongs.forEach((songCard) => {
+                const name = songCard.lastChild.firstChild.innerHTML;
+                if(name == songName){
+                    songCard.style.display = "none";
+                    songCard.remove();
+                }
+            });
+        } else {
+            songs[id].liked = true;
+            likeBtn.style.color = "green";
+            cardCollections[1].append(createCard(songs[id]))
+        }
+    }
+
+    const updateCollection = () => {
+        cardCollections = document.querySelectorAll(".card_collection_main");
+        cardCollections.forEach((collection, index) => {
+            if(index === 1){
+                songs.forEach((song) => {
+                    if(song.liked){
+                        collection.append(createCard(song))
+                    }
+                })
+            } else {
+                songs.forEach((song) => {
+                    collection.append(createCard(song));
+                });
+            }
+            if(index%2 !== 0){
+                collection.classList.toggle("reverse")
+            }
+        })
+    }
+
+    updateCollection();
+
+});
