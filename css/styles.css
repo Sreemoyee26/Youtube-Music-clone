@@ -465,7 +465,7 @@ main{
 }
 @media screen and (max-width: 400px) {
     .timeline .fas,.controls .fas,.liking .fas,.time{
-        font-size: 3vw;
+        font-size: 4vw;
     }
     .playerhead{
         width: 98vw;
