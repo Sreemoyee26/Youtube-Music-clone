@@ -446,11 +446,11 @@ main{
         top: 35px;
     }
     .song_card >img{
-        width: 16vw;
-        height: 17vw;
+        width: 18vw;
+        height: 19vw;
     }
     .song_card_info{
-        font-size: 1.3vw;
+        font-size: 1.5vw;
         line-height: 5px;
     }
     .controls{
@@ -474,11 +474,11 @@ main{
         transform: scale(0.6);
     }
     .song_card >img{
-        width: 22vw;
-        height: 23vw;
+        width: 24vw;
+        height: 25vw;
     }
     .song_card_info{
-        font-size: 1.86vw;
+        font-size: 2vw;
     }
     .liking{
         position: absolute;
