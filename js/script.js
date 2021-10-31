@@ -6,6 +6,8 @@ const {songs} = {
             "location": "./assets/songs/Eternal.mp3",
             "image": "./assets/images/content/artist_image.jpeg",
             "liked": true,
+            "disliked": false,
+            "views": 657,
             "id": 0
         },
         {
@@ -14,6 +16,8 @@ const {songs} = {
             "location": "./assets/songs/NGGYU.mp3",
             "image": "./assets/images/content/nggyp.jpg",
             "liked": false,
+            "disliked": false,
+            "views": 749,
             "id": 1
         },
         {
@@ -22,6 +26,8 @@ const {songs} = {
             "location": "./assets/songs/keepingIt.mp3",
             "image": "./assets/images/content/keepingIt.png",
             "liked": false,
+            "disliked": false,
+            "views": 877,
             "id": 2
         },
         {
@@ -30,6 +36,8 @@ const {songs} = {
             "location": "./assets/songs/eyeTiger.mp3",
             "image": "./assets/images/content/survivor.jpg",
             "liked": false,
+            "disliked": false,
+            "views": 543,
             "id": 3
         },
         {
@@ -38,6 +46,8 @@ const {songs} = {
             "location": "./assets/songs/kenny.mp3",
             "image": "./assets/images/content/kennyg.jpg",
             "liked": false,
+            "disliked": true,
+            "views": 674,
             "id": 4
         },
         {
@@ -46,6 +56,8 @@ const {songs} = {
             "location": "./assets/songs/noctornal.mp3",
             "image": "./assets/images/content/noctornal.jpg",
             "liked": false,
+            "disliked": false,
+            "views": 444,
             "id": 5
         },
         {
@@ -54,6 +66,8 @@ const {songs} = {
             "location": "./assets/songs/unravel.mp3",
             "image": "./assets/images/content/unravel.jpg",
             "liked": true,
+            "disliked": false,
+            "views": 695,
             "id": 6
         }
     ]
@@ -88,8 +102,6 @@ Search.onclick = () =>{
     }
 }
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const playerHead = document.querySelector(".playerhead");
     let playBtn = document.querySelector("playbtn");
@@ -112,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cardArtist.className = "song_card_artist";
 
         cardName.innerHTML = song.name;
-        cardArtist.innerHTML = song.artist;
+        cardArtist.innerHTML = song.artist + " | " + song.views + " views";
         img.src = song.image;
         img.alt = song.name;
 
@@ -129,12 +141,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return card;
     }
 
-    const updatePlayer = ({name, artist, location, image, liked, id}) => {
+    const updatePlayer = ({name, artist, location, image, liked, disliked, views, id}) => {
         currentSong.setAttribute("src", location);
 
         const songContainer = document.querySelector(".song_name");
-        const artistContainer = document.querySelector(".artist");
+        const artistContainer = document.querySelector(".song_artist");
         const likeBtn = document.querySelector(".likebtn");
+        const dislikeBtn = document.querySelector(".dislikebtn");
         const artistImage = document.querySelector(".song_image");
         const endTime = document.querySelector(".end-time");
 
@@ -145,17 +158,25 @@ document.addEventListener("DOMContentLoaded", () => {
         pauseBtn.style.display = "none";
 
         songContainer.innerHTML = name;
-        artistContainer.innerHTML = artist;
+        artistContainer.innerHTML = artist + " | " + views + " views";
         artistImage.src = image;
 
         likeBtn.id = id;
+        dislikeBtn.id = id;
         likeBtn.style.color = "grey";
+        dislikeBtn.style.color = "grey";
         if(liked){
             likeBtn.style.color = "green"
         }
-
+        else if(disliked){
+            dislikeBtn.style.color = "red";
+        }
         likeBtn.onclick = function(){
-            likeSong(id, likeBtn, name)
+            likeSong(id, likeBtn, dislikeBtn, name)
+        }
+
+        dislikeBtn.onclick = function(){
+            dislikeSong(id, likeBtn, dislikeBtn, name)
         }
 
         currentSong.onloadedmetadata = () => {
@@ -183,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
-    const likeSong = (id, likeBtn, songName) => {
+    const likeSong = (id, likeBtn, dislikeBtn, songName) => {
         cardCollections = document.querySelectorAll(".card_collection_main");
         let likedSongs = cardCollections[1].children;
         likedSongs = Array.from(likedSongs);
@@ -200,9 +221,29 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         } else {
             songs[id].liked = true;
+            songs[id].disliked = false;
+            dislikeBtn.style.color = "grey";
             likeBtn.style.color = "green";
             cardCollections[1].append(createCard(songs[id]))
         }
+    }
+
+    const dislikeSong = (id, likeBtn, dislikeBtn, songName) => {
+        cardCollections = document.querySelectorAll(".card_collection_main");
+        let likedSongs = cardCollections[1].children;
+        likedSongs = Array.from(likedSongs);
+
+        songs[id].liked = false;
+        songs[id].disliked = true;
+        likeBtn.style.color = "grey";
+        dislikeBtn.style.color = "red";
+        likedSongs.forEach((songCard) => {
+            const name = songCard.lastChild.firstChild.innerHTML;
+            if(name == songName){
+                songCard.style.display = "none";
+                songCard.remove();
+            }
+        });       
     }
 
     const updateCollection = () => {

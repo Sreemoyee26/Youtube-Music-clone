@@ -376,7 +376,7 @@ main{
     display: flex;
     justify-content: center;
     width: 20vw;
-    gap: 30px;
+    gap: 40px;
 }
 .song_image{
     width: 40px;
@@ -390,13 +390,15 @@ main{
 }
 .song_details{
     color: white;
-    line-height: 5px;
     font-size: 12px;
 }
 .timeline>.playbtn, .timeline>.pausebtn{
     font-size: 1.8vw;
 }
-/* PlayerHead Section CSS starts */
+.song_artist{
+    width:40vw;
+}
+/* PlayerHead Section CSS ends */
 
 /* Media Query */
 @media screen and (max-width: 935px) {
@@ -489,7 +491,7 @@ main{
     }
     .song{
         position: relative;
-        right: 110px;
+        right: 115px;
     }
     .song_card >img{
         width: 22vw;
