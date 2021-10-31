@@ -179,7 +179,7 @@ a:hover{
 main{
     padding-left: 7vw;
     margin-top: 100px;
-    margin-bottom: 80px;
+    margin-bottom: 90px;
 }
 .liked{
     color:white;
@@ -219,10 +219,6 @@ main{
     font-size: 1.1vw;
     line-height: 5px;
 }
-
-
-
-
 
 /* Artists Section */
 .artists{

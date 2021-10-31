@@ -26,7 +26,7 @@ const {songs} = {
             "location": "./assets/songs/keepingIt.mp3",
             "image": "./assets/images/content/keepingIt.png",
             "liked": false,
-            "disliked": false,
+            "disliked": true,
             "views": 877,
             "id": 2
         },
@@ -224,13 +224,16 @@ document.addEventListener("DOMContentLoaded", () => {
             songs[id].disliked = false;
             dislikeBtn.style.color = "grey";
             likeBtn.style.color = "green";
-            cardCollections[1].append(createCard(songs[id]))
+            cardCollections[1].append(createCard(songs[id]));
+            cardCollections[2].append(createCard(songs[id]))
         }
     }
 
     const dislikeSong = (id, likeBtn, dislikeBtn, songName) => {
         cardCollections = document.querySelectorAll(".card_collection_main");
         let likedSongs = cardCollections[1].children;
+        let yourSongs = cardCollections[2].children;
+        yourSongs = Array.from(yourSongs);
         likedSongs = Array.from(likedSongs);
 
         songs[id].liked = false;
@@ -243,7 +246,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 songCard.style.display = "none";
                 songCard.remove();
             }
-        });       
+        }); 
+        yourSongs.forEach((myCard) => {
+            const name = myCard.lastChild.firstChild.innerHTML;
+            if(name == songName){
+                myCard.style.display = "none";
+                myCard.remove();
+            }
+        });         
     }
 
     const updateCollection = () => {
@@ -255,13 +265,16 @@ document.addEventListener("DOMContentLoaded", () => {
                         collection.append(createCard(song))
                     }
                 })
+            } else if(index === 2){
+                songs.forEach((song) => {
+                    if(!song.disliked){
+                        collection.append(createCard(song));
+                    }
+                });
             } else {
                 songs.forEach((song) => {
                     collection.append(createCard(song));
                 });
-            }
-            if(index%2 !== 0){
-                collection.classList.toggle("reverse")
             }
         })
     }
